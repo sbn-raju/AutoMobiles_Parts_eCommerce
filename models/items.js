@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-let cartSchema = new mongoose.Schema({
+let itemSchema = new mongoose.Schema({
     item_pic:{
         type:String,
         required:true
@@ -27,7 +27,7 @@ let cartSchema = new mongoose.Schema({
         required:true
     },
     item_rating:{
-        type:Number,
+        type:String,
     },
     item_des:{
         type:String,
@@ -36,6 +36,7 @@ let cartSchema = new mongoose.Schema({
     }
 });
 
-let Cart = new mongoose.model("Cart",cartSchema);
+let Item = new mongoose.model("Item",itemSchema);
 
-module.exports = Cart;
+
+module.exports = Item;
