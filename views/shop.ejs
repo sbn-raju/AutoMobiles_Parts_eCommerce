@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <% for( let item of itemsData) { %>
+    <div class="card">
+        <div class="image-container">
+           <a href="/shop/details"><img src="<%= item.item_pic %>" alt="items image"></a> 
+        </div>
+        <div class="heading-container">
+            <h2><%= item.item_name %></h2>
+        </div>
+    <div class="price-container">
+        <p><%= item.item_price %></p>
+        <p><%= item.item_discount %></p>
+        <p><%= item.item_rating %></p>
+    </div>
+    <p><%= item.item_company %></p>
+            <p><%= item.item_category %></p>
+            
+            
+           
+            <p><%= item.item_des %></p>
+    </div>
+    <% } %>
+    <%- include('footer') %>
+</body>
+</html>

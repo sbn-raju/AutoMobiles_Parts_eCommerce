@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parts.|Sign up</title>
-    <link rel="stylesheet" href="signup.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parts.|Sign up</title>
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <%- include('navbar') %>
+  <%- include('navbar') %>
     <div class="signup-main-container">
-          <form method="post" action="/submit/signup/"  class="formData" >
-              <input type="text" name="firstName" id="Firstname" placeholder="First Name">
-              <input type="text" name="lastName" id="Lastname" placeholder="Last Name">
-              <input type="email" name="email" id="Email" placeholder="Email">
-              <input type="number" name="phone" id="Number" placeholder="Phone Number">
-              <div class="state-city">
-                <select name="state" id="State">
-                    <option value="" disabled selected>Choose your State...</option>
-                    <option value="Andaman & Nicobar">Andaman & Nicobar</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                    <option value="Assam">Assam</option>
-                    <option value="Bihar">Bihar</option>
-                    <option value="Chandigarh">Chandigarh</option>
-                    <option value="Chhattisgarh">Chhattisgarh</option>
-                    <option value="Dadra & Nagar Haveli">Dadra & Nagar Haveli</option>
-                    <option value="Daman & Diu">Daman & Diu</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Goa">Goa</option>
-                    <option value="Gujarat">Gujarat</option>
-                    <option value="Haryana">Haryana</option>
-                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                    <option value="Jammu & Kashmir">Jammu & Kashmir</option>
-                    <option value="Jharkhand">Jharkhand</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Lakshadweep">Lakshadweep</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Manipur">Manipur</option>
-                    <option value="Meghalaya">Meghalaya</option>
-                    <option value="Mizoram">Mizoram</option>
-                    <option value="Nagaland">Nagaland</option>
-                    <option value="Odisha">Odisha</option>
-                    <option value="Puducherry">Puducherry</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="Sikkim">Sikkim</option>
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Telangana">Telangana</option>
-                    <option value="Tripura">Tripura</option>
-                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                    <option value="Uttarakhand">Uttarakhand</option>
-                    <option value="West Bengal">West Bengal</option>
-                  </select>
-                  <select name="city" id="City">
-                    <option value="">Choose your City...</option>
-                  </select>
-              </div>
-              <input type="text" name="address" id="Address" placeholder="Address">
-              <input type="number" name="zip" id="Zip" placeholder="Zip Code">
-              <button type="submit" class="btns">Sign Up</button>
-          </form>
+      <form method="post" action="/submit/signup/" class="formData">
+        <input type="text" name="firstName" id="Firstname" placeholder="First Name">
+        <input type="text" name="lastName" id="Lastname" placeholder="Last Name">
+        <input type="email" name="email" id="Email" placeholder="Email">
+        <input type="number" name="phone" id="Number" placeholder="Phone Number">
+        <div class="state-city">
+          <select name="state" id="State">
+            <option value="" disabled selected>Choose your State...</option>
+            <option value="Andaman & Nicobar">Andaman & Nicobar</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadra & Nagar Haveli">Dadra & Nagar Haveli</option>
+            <option value="Daman & Diu">Daman & Diu</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+          </select>
+          <select name="city" id="City">
+            <option value="">Choose your City...</option>
+          </select>
+        </div>
+        <input type="text" name="address" id="Address" placeholder="Address">
+        <input type="number" name="zip" id="Zip" placeholder="Zip Code">
+        <button type="submit" class="btns">Sign Up</button>
+      </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <%- include('footer') %>
     <script src="app.js"></script>
 </body>
 </html>
