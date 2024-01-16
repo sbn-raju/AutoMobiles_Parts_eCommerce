@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="cart-main-container">
+        <% for(let item of cartAddedData) { %>
+            <img src="<%= item.item_pic %>" alt="image">
+            <p><%= item.item_name %></p>
+        <% } %>
+    </div>
+    <%- include('footer') %>
+</body>
+</html>
