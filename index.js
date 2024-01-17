@@ -18,6 +18,7 @@ app.use(express.json());
 
 
 let port = 8080;
+let counter = 0;
 
 main().then((result)=>{
     console.log("Connected to database");
@@ -73,6 +74,12 @@ app.get("/cart",async (req,res)=>{
        let cartAddedData = await Cart.find();
        res.render("cart.ejs",{cartAddedData});
 });
+
+
+app.get("/cart/count",(req,res)=>{
+    counter++;
+    res.render("navbar.ejs",{counter})
+})
 
 app.get("/signup",(req,res)=>{
     res.render("signup.ejs");
