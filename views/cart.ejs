@@ -1,19 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <%- include('navbar') %>
-    <div class="cart-main-container">
-        <% for(let item of cartAddedData) { %>
-            <img src="<%= item.item_pic %>" alt="image">
-            <p><%= item.item_name %></p>
-        <% } %>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cart</title>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="cart.css">
+
+    </head>
+    <body>
+        <%- include('navbar') %>
+        <div class="cart-main-section-container">
+        <div class="cart-main-container">
+            <% let total_price = 0; %>
+            <% for(let item of cartAddedData) { %>
+                <div class="cart-item-container">
+                    <div class="item-image-cart-container">
+                        <img src="<%= item.item_pic %>" alt="image">
+                    </div>
+                    <div class="item-details-cart-container">
+                    <div class="item-name-cart-container">
+                        <h2><%= item.item_company %></h2>
+                        <h3><%= item.item_name %></h3>
+                        <p><% for( let star = 0; star < item.item_rating; star++ ) { %>
+                            <i class="fa-solid fa-star"></i>
+                        <% } %>
+                        </p>
+                        </div>
+                    </div>
+                    <div class="item-price-cart-container">
+                        <p class="discount-price" style="color: red; font-size:1.5rem"><sup>&#8377;</sup><%= item.item_price-((item.item_price * item.item_discount)/100) %></p>
+                        <p>M.R.P.:&nbsp;<span style="text-decoration: line-through;">&#8377;<%= item.item_price %></span></p>
+                    </div>
+                </div>
+                <hr style="width: 80%;">
+                <% total_price += item.item_price-((item.item_price * item.item_discount)/100) %>
+                <%total_price%>
+            <% } %>
+            <br><br>
+            <h2 style="color: red;">Total price:<sup>&#8377;</sup><%=total_price.toFixed(2)%></h2>
+        </div>
+        <div class="buy-proceeding-container">
+            <div class="inside-container">
+            <p style="font-size: 1.3rem;">SubTotal:<sup>&#8377;</sup><%= total_price %></p>
+            </div>
+            <div class="buy-button">
+                <button class="buybtn">Proceed to Buy</button>
+            </div>
+        </div>
     </div>
-    <%- include('footer') %>
-</body>
-</html>
+        <%- include('footer') %>
+    </body>
+    </html>
