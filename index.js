@@ -16,9 +16,7 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
-
 let port = 8080;
-let counter = 0;
 
 main().then((result)=>{
     console.log("Connected to database");
@@ -67,7 +65,7 @@ app.get("/cart/:id", async (req,res)=>{
         item_des : itemIntoCart.item_des
     });
     itemIntoCart = [];
-    await cartData.save()
+    await cartData.save();
 });
 
 app.get("/cart",async (req,res)=>{
@@ -76,10 +74,12 @@ app.get("/cart",async (req,res)=>{
 });
 
 
-app.get("/cart/count",(req,res)=>{
-    counter++;
-    res.render("navbar.ejs",{counter})
-})
+app.get("/cart/remove/:id",async(req,res)=>{
+    let{id} = req.params;
+    let itemFromCart = await Cart.findByIdAndDelete(id);
+    console.log(itemFromCart);
+    res.redirect("/cart");
+});
 
 app.get("/signup",(req,res)=>{
     res.render("signup.ejs");
