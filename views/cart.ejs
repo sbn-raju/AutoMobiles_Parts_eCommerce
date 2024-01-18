@@ -1,54 +1,98 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cart</title>
-        <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="cart.css">
+<!DOCTYPE html>
+<html lang="en">
 
-    </head>
-    <body>
-        <%- include('navbar') %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <%- include('navbar') %>
         <div class="cart-main-section-container">
-        <div class="cart-main-container">
-            <% let total_price = 0; %>
-            <% for(let item of cartAddedData) { %>
-                <div class="cart-item-container">
-                    <div class="item-image-cart-container">
-                        <img src="<%= item.item_pic %>" alt="image">
-                    </div>
-                    <div class="item-details-cart-container">
-                    <div class="item-name-cart-container">
-                        <h2><%= item.item_company %></h2>
-                        <h3><%= item.item_name %></h3>
-                        <p><% for( let star = 0; star < item.item_rating; star++ ) { %>
-                            <i class="fa-solid fa-star"></i>
-                        <% } %>
-                        </p>
+            <div class="cart-main-container">
+                <% let total_price=0; %>
+                    <% for(let item of cartAddedData) { %>
+                        <div class="cart-item-container">
+                            <div class="item-image-cart-container">
+                                <img src="<%= item.item_pic %>" alt="image">
+                            </div>
+                            <div class="item-details-cart-container">
+                                <div class="item-name-cart-container">
+                                    <h2>
+                                        <%= item.item_company %>
+                                    </h2>
+                                    <h3>
+                                        <%= item.item_name %>
+                                    </h3>
+                                    <p style="color:gold;">
+                                        <%for( let star=0; star < item.item_rating; star++ ) { %>
+                                            <i class="fa-solid fa-star"></i>
+                                            <% } %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item-price-cart-container">
+                                <p class="discount-price" style="color: red; font-size:1.5rem"><sup>&#8377;</sup>
+                                    <%= item.item_price-((item.item_price * item.item_discount)/100) %>
+                                </p>
+                                <p>M.R.P.:&nbsp;<span style="text-decoration: line-through;">&#8377;<%= item.item_price
+                                            %></span></p>
+                                <a href="/cart/remove/<%= item._id %>" class="remove-from-cart-btn">
+                                        <p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" class="injected-svg"
+                                                data-src="/icons/shopping-cart-remove-02-stroke-rounded.svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#ffffff">
+                                                <path
+                                                    d="M8 16L16.7201 15.2733C19.4486 15.046 20.0611 14.45 20.3635 11.7289L21 6"
+                                                    stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <path d="M6 6H8M22 6H18.5" stroke="#ffffff" stroke-width="1.5"
+                                                    stroke-linecap="round"></path>
+                                                <path d="M10.5 3L13.5 6M13.5 6L16.5 9M13.5 6L10.5 9M13.5 6L16.5 3"
+                                                    stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <circle cx="6" cy="20" r="2" stroke="#ffffff" stroke-width="1.5">
+                                                </circle>
+                                                <circle cx="17" cy="20" r="2" stroke="#ffffff" stroke-width="1.5">
+                                                </circle>
+                                                <path d="M8 20L15 20" stroke="#ffffff" stroke-width="1.5"
+                                                    stroke-linecap="round"></path>
+                                                <path
+                                                    d="M2 2H2.966C3.91068 2 4.73414 2.62459 4.96326 3.51493L7.93852 15.0765C8.08887 15.6608 7.9602 16.2797 7.58824 16.7616L6.63213 18"
+                                                    stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+                                            </svg>
+                                        </p>
+                                        <p>Remove from cart</p>
+                                    </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-price-cart-container">
-                        <p class="discount-price" style="color: red; font-size:1.5rem"><sup>&#8377;</sup><%= item.item_price-((item.item_price * item.item_discount)/100) %></p>
-                        <p>M.R.P.:&nbsp;<span style="text-decoration: line-through;">&#8377;<%= item.item_price %></span></p>
-                    </div>
+                        <hr style="width: 80%;">
+                        <% total_price +=item.item_price-((item.item_price * item.item_discount)/100) %>
+                            <%total_price%>
+                                <% } %>
+                                    <br><br>
+                                    <h2 style="color: red;">Total price:<sup>&#8377;</sup>
+                                        <%=total_price.toFixed(2)%>
+                                    </h2>
+            </div>
+            <div class="buy-proceeding-container">
+                <div class="inside-container">
+                    <p style="font-size: 1.3rem;">SubTotal:<sup>&#8377;</sup>
+                        <%= total_price %>
+                    </p>
                 </div>
-                <hr style="width: 80%;">
-                <% total_price += item.item_price-((item.item_price * item.item_discount)/100) %>
-                <%total_price%>
-            <% } %>
-            <br><br>
-            <h2 style="color: red;">Total price:<sup>&#8377;</sup><%=total_price.toFixed(2)%></h2>
-        </div>
-        <div class="buy-proceeding-container">
-            <div class="inside-container">
-            <p style="font-size: 1.3rem;">SubTotal:<sup>&#8377;</sup><%= total_price %></p>
-            </div>
-            <div class="buy-button">
-                <button class="buybtn">Proceed to Buy</button>
+                <div class="buy-button">
+                    <button class="buybtn">Proceed to Buy</button>
+                </div>
             </div>
         </div>
-    </div>
         <%- include('footer') %>
-    </body>
-    </html>
+</body>
+
+</html>
