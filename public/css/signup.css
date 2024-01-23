@@ -112,3 +112,20 @@ margin: 0;
     border-radius: 0.2rem;
     margin-right: 4rem;
 }
+@media screen and (max-width:990px){
+    .signup-main-container{
+        width: 80%;
+        height: 100%;
+    }
+}
+@media screen and (max-width:400px){
+    .signup-main-container{
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        width: 80%;
+        height: 100%;
+    }
+    .btns{
+        padding: 0rem 2rem 0rem 2rem ;
+    }
+}

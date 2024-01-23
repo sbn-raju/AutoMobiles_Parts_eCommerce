@@ -39,8 +39,7 @@ app.get("/",async(req,res)=>{
 });
 
 app.get("/shop", async(req,res)=>{
-    let itemsData = await Item.find({})
-    // let cartCounter = await Cart.find({}).count();
+    let itemsData = await Item.find({});
     res.render("shop.ejs",{itemsData});
 });
 

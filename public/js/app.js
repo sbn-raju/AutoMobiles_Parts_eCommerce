@@ -62,11 +62,4 @@ if(selectedState && citiesByState[selectedState]){
 
 document.getElementById("State").addEventListener("change", citychanges);
 
-// let buttonCounter = document.querySelectorAll(".btnConter");
-// let text = document.querySelector(".btnCount")
-// let counter = 0;
-// for(let btn of buttonCounter){
-//   btn.addEventListener("click",()=>{
-//          text.innerHTML = ++counter;
-//   });
-// };
+
