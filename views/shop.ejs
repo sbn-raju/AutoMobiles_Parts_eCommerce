@@ -1,41 +1,43 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="shop.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
-    <body>
-        <%- include('navbar') %>
-        <div class="shop-main-container">
-            <% for( let item of itemsData) { %>
-                <div class="shop-card">
-                    <div class="shop-image-container">
-                    <img src="<%= item.item_pic %>" alt="items image">
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Shop | Spare</title>
+            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="shop.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+        </head>
+        <body>
+            <%- include('signupnav') %>
+            <div class="shop-main-container">
+                <% for( let item of itemsData) { %>
+                    <div class="shop-card">
+                        <div class="shop-image-container">
+                            <img src="<%= item.item_pic %>" alt="items image">
+                            </div>
+                        <div class="all-contain-container">
+                                <div class="shop-company-name">
+                                    <a href="/shop/details/<%=item._id%>"><h2><%= item.item_company %></h2></a>
+                                </div>
+                                <div class="shop-heading-container">
+                                    <h3><%= item.item_name %></h3>
+                                </div>
+                            <div class="shop-price-container">
+                                <p class="discount-price"><sup>&#8377;</sup><%= item.item_price-((item.item_price * item.item_discount)/100) %></p>
+                                <p>M.R.P.:&nbsp;<span style="text-decoration: line-through;">&#8377;<%= item.item_price %></span></p>
+                                <p><%= item.item_discount %>%</p>
+                                <p style="color: gold;"><% for( let star = 0; star < item.item_rating; star++ ) { %>
+                                    <i class="fa-solid fa-star"></i>         
+                                <% } %></p>
+                            </div>
+                        </div>
+                    <button class="btns btnCounter"><a href="/cart/<%= item._id %>" style="text-decoration: none; color:white;">Add to Cart</a></button>
                     </div>
-                    <div class="shop-company-name">
-                        <a href="/shop/details/<%=item._id%>"><h2><%= item.item_company %></h2></a>
-                    </div>
-                    <div class="shop-heading-container">
-                        <h3><%= item.item_name %></h3>
-                    </div>
-                <div class="shop-price-container">
-                    <p class="discount-price"><sup>&#8377;</sup><%= item.item_price-((item.item_price * item.item_discount)/100) %></p>
-                    <p>M.R.P.:&nbsp;<span style="text-decoration: line-through;">&#8377;<%= item.item_price %></span></p>
-                    <p><%= item.item_discount %>%</p>
-                    <p style="color: gold;"><% for( let star = 0; star < item.item_rating; star++ ) { %>
-                        <i class="fa-solid fa-star"></i>         
-                    <% } %></p>
-                </div>
-                <button class="btns btnCounter"><a href="/cart/<%= item._id %>" style="text-decoration: none; color:white;">Add to Cart</a></button>
-                </div>
-            <% } %>
-        </div>
-        <%- include('footer') %>
-    </body>
-    </html>
+                <% } %>
+            </div>
+            <%- include('footer') %>
+        </body>
+        </html>
