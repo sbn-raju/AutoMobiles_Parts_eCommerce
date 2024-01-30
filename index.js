@@ -6,6 +6,7 @@ const Cart = require("./models/cart");
 const Feedback = require("./models/feedback");
 const Item = require("./models/items");
 const path = require("path");
+const { readdirSync } = require("fs");
 
 
 app.set("view engine", "ejs");
@@ -103,3 +104,32 @@ app.post("/submit/signup",(req,res)=>{
         console.log(err);
     })
 });
+
+app.get("/admin",(req,res)=>{
+    res.render("adminPanel.ejs");
+});
+app.post("/admin/auth",(req,res)=>{
+    let{adminUserName, adminPassward} = req.body;
+    if(adminUserName === "spareUser@123" && adminPassward === "sparePass@123"){
+        res.render("adminPanelPage.ejs");
+    }
+    else{
+        res.send("Check Your Admin Passward or Username");
+    };
+});
+app.post("/admin/ops",(req,res)=>{
+    // res.send("Hello, This is ops Api");
+    let {ops} = req.body;
+    if(ops == "Create"){
+        res.render("adminPanelCreate.ejs");
+    }
+    else if(ops == "Read"){
+        res.render("adminpanelRead.ejs");
+    }
+    else if(ops == "Delete"){
+        res.render("adminPanelDelete.ejs");
+    }
+    else if(ops == "Update"){
+        res.render("adminPanelUpdate.ejs");
+    }
+})

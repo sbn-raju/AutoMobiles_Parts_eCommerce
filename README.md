@@ -3,8 +3,6 @@ This is a web application for managing an auto parts inventory. It allows users 
 
 # Features
 Inventory Management: Add new parts, update existing ones, and remove parts that are no longer in stock.
-Search Functionality: Search for parts based on name, category, or other attributes.
-User Authentication: Secure login and registration system for managing user accounts.
 Responsive Design: The application is designed to work seamlessly across different devices and screen sizes.
 
 # Technologies Used
