@@ -1,4 +1,4 @@
-# Auto Parts System(In Progress not yet built)
+# Auto Parts System
 This is a web application for managing an auto parts inventory. It allows users to add, edit, and delete auto parts, as well as search for specific parts based on various criteria. The application is built using HTML, CSS, JavaScript, Node.js, Express.js, and MongoDB.
 
 # Features
