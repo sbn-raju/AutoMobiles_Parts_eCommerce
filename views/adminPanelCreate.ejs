@@ -3,9 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Panel || Create</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
 </head>
 <body>
-    <h1>This is Create Page</h1>
+    <!-- let itemSchema = new mongoose.Schema({
+        item_pic:{
+            type:String,
+            required:true
+        },
+        item_name:{
+            type:String,
+            required:true
+        },
+        item_company:{
+            type:String,
+            required:true
+        },
+        item_category:{
+            type:String,
+            required:true
+        },
+        item_price:{
+            type:Number,
+            required:true
+        },
+        item_discount:{
+            type:Number,
+            required:true
+        },
+        item_rating:{
+            type:String,
+        },
+        item_des:{
+            type:String,
+            minLength:10,
+            required:true
+        }
+    }); -->
+    <%- include('navbar.ejs') %>
+    <main>
+        <div class="admin-main-container">
+            <form action="/admin/create" method="post">
+            <input type="text" name="item_pic" id="pic" placeholder="Enter Items Image">
+            <input type="text" name="item_name" id="name" placeholder="Enter Item Name">
+            <input type="text" name="item_company" id="company" placeholder="Enter Item Company">
+            <input type="text" name="item_category" id="category" placeholder="Enter Item Company">
+            <input type="number" name="item_price" id="price" placeholder="Enter Item Price">
+            <input type="number" name="item_discount" id="discount" placeholder="Enter Item Discount">
+            <input type="text" name="item_rating" id="rating" placeholder="Enter Item InitialRating(Add one ititialy)">
+            <textarea name="item_des" id="description" placeholder="Enter Description">Enter Description
+            </textarea>
+            <button type="submit" class="admin-button">Submit</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

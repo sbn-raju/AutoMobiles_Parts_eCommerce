@@ -15,18 +15,15 @@
 <body>
     <%- include('signupnav') %>
         <div class="shop-main-container">
-            <% for( let item of itemsData) { %>
+            <% for(let item of items) { %>
                 <div class="shop-card">
                     <div class="shop-image-container">
                         <img src="<%= item.item_pic %>" alt="items image">
                     </div>
                     <div class="all-contain-container">
                         <div class="shop-company-name">
-                            <a href="/shop/details/<%=item._id%>">
-                                <h2>
-                                    <%= item.item_company %>
-                                </h2>
-                            </a>
+                            <p><a href="/shop/details/<%= item._id %>"><%= item.item_company %></a></p>
+
                         </div>
                         <div class="shop-heading-container">
                             <h3>

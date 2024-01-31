@@ -1,11 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-  <h1>This is delete page</h1>  
-</body>
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Delete || Admin Panel</title>
+      <link rel="stylesheet" href="/style.css">
+      <link rel="stylesheet" href="/admin.css">
+  </head>
+  <body>
+    <%- include("navbar.ejs") %>
+    <main>
+        <div class="admin-main-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>CompanyName</th>
+                        <th>Description</th>
+                        <th>Catgeory</th>
+                        <th>Price</th>
+                        <th>Discount(%)</th>
+                        <th>Ratings</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( let item of readItemData) { %>
+                        <tr>
+                            <td><img src="<%= item.item_pic %>" alt="Image"></td>
+                            <td><%= item.item_name%></td>
+                            <td><%= item.item_company%></td>
+                            <td><%= item.item_des %></td>
+                            <td><%= item.item_category%></td>
+                            <td><%= item.item_price %></td>
+                            <td><%= item.item_discount%></td>
+                            <td><%= item.item_rating %></td>
+                            <td><button class="admin-btn"><a href="">Delete</a></button></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </main> 
+  </body>
+  </html>

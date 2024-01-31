@@ -6,7 +6,7 @@ const Cart = require("./models/cart");
 const Feedback = require("./models/feedback");
 const Item = require("./models/items");
 const path = require("path");
-const { readdirSync } = require("fs");
+const { error } = require("console");
 
 
 app.set("view engine", "ejs");
@@ -40,14 +40,21 @@ app.get("/",async(req,res)=>{
 });
 
 app.get("/shop", async(req,res)=>{
-    let itemsData = await Item.find({});
-    res.render("shop.ejs",{itemsData});
+    let items = await Item.find({});
+    res.render("shop.ejs",{items});
 });
 
-app.get("/shop/details/:id", async(req,res)=>{
-    let { id } = req.params;
-    let item = await Item.findById(id)
-     res.render("details.ejs",{item});
+app.get("/shop/details/:id",async(req,res)=>{
+    try {
+    let id = new ObjectID(req.params.id);
+    console.log(id);
+    let data = await Item.findById(id);
+    console.log(data._id);
+    res.render("details.ejs",{data});
+    } catch (error) {
+        console.log(error)
+    }
+   
 });
 
 app.get("/cart/:id", async (req,res)=>{
@@ -117,19 +124,34 @@ app.post("/admin/auth",(req,res)=>{
         res.send("Check Your Admin Passward or Username");
     };
 });
-app.post("/admin/ops",(req,res)=>{
-    // res.send("Hello, This is ops Api");
+app.post("/admin/ops",async(req,res)=>{
     let {ops} = req.body;
+    let readItemData = await Item.find();
     if(ops == "Create"){
         res.render("adminPanelCreate.ejs");
     }
     else if(ops == "Read"){
-        res.render("adminpanelRead.ejs");
+        res.render("adminpanelRead.ejs",{readItemData});
     }
     else if(ops == "Delete"){
-        res.render("adminPanelDelete.ejs");
+        res.render("adminPanelDelete.ejs",{readItemData});
     }
     else if(ops == "Update"){
         res.render("adminPanelUpdate.ejs");
     }
-})
+});
+app.post("/admin/create",async(req,res)=>{
+    let {item_pic,item_name,item_company ,item_category,item_price,item_discount,item_rating,item_des} = req.body;
+    let newItemData = new Item({
+        item_pic :item_pic,
+        item_name : item_name,
+        item_company : item_company,
+        item_category : item_category,
+        item_price : item_price,
+        item_discount :item_discount,
+        item_rating:item_rating,
+        item_des : item_des
+    });
+    await newItemData.save();
+});
+

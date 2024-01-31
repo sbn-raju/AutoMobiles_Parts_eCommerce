@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
 </head>
 <body>
     <%- include("navbar") %>
-    <form action="/admin/ops" method="post">
-        <select name="ops" id="operation">
-          <option value="" selected di>Choose.. Operation</option>
-           <option value="Create">Add Items</option>
-           <option value="Delete">Remove Items</option>
-           <option value="Update">Update Items</option>
-           <option value="Read">Show Items</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+    <main>
+        <div class="admin-main-container">
+            <form action="/admin/ops" method="post">
+                <select name="ops" id="operation">
+                  <option value="" selected di>Choose.. Operation</option>
+                   <option value="Create">Add Items</option>
+                   <option value="Delete">Remove Items</option>
+                   <option value="Update">Update Items</option>
+                   <option value="Read">Show Items</option>
+                </select>   
+                <button type="submit" class="admin-button">Submit</button>
+            </form>
+        </div>
+       
+    </main>
 </body>
 </html>
