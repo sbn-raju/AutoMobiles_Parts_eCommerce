@@ -7,7 +7,11 @@ const Feedback = require("./models/feedback");
 const Item = require("./models/items");
 const path = require("path");
 const { error } = require("console");
+require('dotenv').config();
+const ADMINUSER = process.env.ADMINUSER;
+const ADMINPASS = process.env.ADMINPASS;
 
+console.log(ADMINUSER);
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname,"/public/css")));
@@ -39,24 +43,14 @@ app.get("/",async(req,res)=>{
     res.render("index.ejs",{feedBacks});
 });
 
+app.get("/details/:id",async(req,res)=>{
+    let detailItemData = await Item.findById(req.params.id);
+    res.render("details.ejs",{detailItemData}); 
+});
 app.get("/shop", async(req,res)=>{
     let items = await Item.find({});
     res.render("shop.ejs",{items});
 });
-
-app.get("/shop/details/:id",async(req,res)=>{
-    try {
-    let id = new ObjectID(req.params.id);
-    console.log(id);
-    let data = await Item.findById(id);
-    console.log(data._id);
-    res.render("details.ejs",{data});
-    } catch (error) {
-        console.log(error)
-    }
-   
-});
-
 app.get("/cart/:id", async (req,res)=>{
     let {id} = req.params;
     let itemIntoCart =  await Item.findById(id);
@@ -91,8 +85,6 @@ app.get("/cart/remove/:id",async(req,res)=>{
 app.get("/signup",(req,res)=>{
     res.render("signup.ejs");
 });
-
-
 app.post("/submit/signup",(req,res)=>{
     let{firstName, lastName, email, phone, state, city, address, zip} = req.body;
     let customerData = new Customer({
@@ -111,13 +103,16 @@ app.post("/submit/signup",(req,res)=>{
         console.log(err);
     })
 });
-
+// ***************************************************************************************************************
+// <<<ADMIN PANEL>>>
 app.get("/admin",(req,res)=>{
     res.render("adminPanel.ejs");
 });
 app.post("/admin/auth",(req,res)=>{
-    let{adminUserName, adminPassward} = req.body;
-    if(adminUserName === "spareUser@123" && adminPassward === "sparePass@123"){
+    let{adminUserName, adminPassword} = req.body;
+    console.log(adminUserName, adminPassword);
+    console.log(ADMINPASS,ADMINUSER);
+    if(ADMINUSER === adminUserName && ADMINPASS === adminPassword){
         res.render("adminPanelPage.ejs");
     }
     else{
@@ -134,12 +129,13 @@ app.post("/admin/ops",async(req,res)=>{
         res.render("adminpanelRead.ejs",{readItemData});
     }
     else if(ops == "Delete"){
-        res.render("adminPanelDelete.ejs",{readItemData});
+        res.redirect("/admin/destroy");
     }
     else if(ops == "Update"){
-        res.render("adminPanelUpdate.ejs");
+        res.redirect("/admin/edit");
     }
 });
+//Create Route
 app.post("/admin/create",async(req,res)=>{
     let {item_pic,item_name,item_company ,item_category,item_price,item_discount,item_rating,item_des} = req.body;
     let newItemData = new Item({
@@ -155,3 +151,46 @@ app.post("/admin/create",async(req,res)=>{
     await newItemData.save();
 });
 
+// Destory Route
+app.get("/admin/destroy",async(req,res)=>{
+    let readItemData = await Item.find();
+    res.render("adminPanelDelete.ejs",{readItemData});
+
+});
+app.get("/admin/destroy/:id",async(req,res)=>{
+    let id = req.params.id;
+    let deletedItem = await Item.findByIdAndDelete(id);
+    console.log(deletedItem);
+    res.redirect("/admin/destroy");
+});
+
+//Update Route
+app.get("/admin/edit",async(req,res)=>{
+    let editItemData = await Item.find();
+    res.render("adminPanelUpdate.ejs",{editItemData});
+});
+
+app.get("/admin/edit/:id",async(req,res)=>{
+    let updateForm = await Item.findById(req.params.id);
+    res.render("adminPanelUpdateForm.ejs",{updateForm});
+});
+// ************************************************************************************************************
+// <<<<Feedback Form>>>>
+app.get("/feedback",(req,res)=>{
+    res.render("feedbackForm.ejs");
+});
+
+app.post("/feedback/submit",(req,res)=>{
+    let {profile, username, feedback, stars} = req.body;
+    let newFeedback = new Feedback({
+           profile : profile,
+           userName: username,
+           feedback: feedback,
+           stars:stars
+    });
+    newFeedback.save().then(()=>{
+        res.redirect("/");
+    }).catch((err)=>{
+        console.log(err);
+    });
+});

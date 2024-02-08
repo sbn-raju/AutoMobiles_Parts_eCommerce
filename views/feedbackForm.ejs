@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedBack||Spare</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        main{
+            padding-top: 5rem;
+        }
+
+    </style>
+</head>
+<body>
+    <%- include("navbar") %>
+    <main>
+         <form action="/feedback/submit" method="post">
+         <input type="text" name="profile" id="Profile_pic" placeholder="Add Your Pic if You Want">
+         <input type="text" name="username" id="Username" placeholder="Username">
+         <textarea name="feedback" id="feedbackField" cols="30" rows="10">Give FeedBack</textarea>
+         <input type="text" name="rating" placeholder="Rating">
+         <button type="submit" class="btns" style="margin: 0rem;">Submit FeedBack</button>
+         </form>
+    </main>
+</body>
+</html>

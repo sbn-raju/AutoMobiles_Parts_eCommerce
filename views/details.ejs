@@ -1,85 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+    <title>Details| Spare</title>
+    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/details.css">
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
 <body>
-    <%- include('signupnav') %>
-    <div class="details-main-container">
-        <div class="left-main-container">
-            <div class="left-main-container-picture">
-                <img src="<%=data.item_pic%>" alt="Item Image">
+    <%- include('navbar') %>
+   <main class="details-main-container">
+    <div class="details-image-container">
+        <img src="<%= detailItemData.item_pic %>" alt="Item-image">
+    </div>
+    <div class="details-right-container">
+        <div class="details-heading-container">
+           <h3 style="color:blue"><%= detailItemData.item_company %></h3>
+           <h2><%= detailItemData.item_name %></h2>
+            <div class="details-rating-container">
+                <% for(let star = 0 ; star < detailItemData.item_rating;star++){%>
+                    <p style="color: gold;"><i class="fa-solid fa-star"></i></p>
+                <% } %><span style="color:lightblue;">&nbsp;Rating</span>
             </div>
+            <hr>
         </div>
-        <div class="right-main-container">
-            <div class="right-heading-container">
-                <h2>
-                    <%= data.item_company %>
-                </h2>
-                <h3>
-                    <%= data.item_name %>
-                </h3>
-            </div>
-            <div class="right-ratings-container">
-                <p style="color: gold;">
-                    <% for( let star=0; star < data.item_rating; star++ ) { %>
-                        <i class="fa-solid fa-star"></i>
-                        <% } %>&nbsp;<span style="color: blue;">Ratings</span>
-                </p>
-            </div>
-            <hr class="ruler">
-            <div class="right-price-container">
-                <p>
-                    <span style="font-size: 1.8rem; font-weight:1px; color:red">&minus;&nbsp;<%= data.item_discount
-                            %>&percnt;</span>
-                    &nbsp;&nbsp;&nbsp;<span style="font-size: 2rem; font-weight:1px;"><sup
-                            style="font-size: 1rem; font-weight:1px;">&#8377;
-                        </sup>
-                        <%= data.item_price-((data.item_price * data.item_discount)/100) %>
-                    </span>
-                </p>
-                <p>M.R.P.:&nbsp;<span style="text-decoration: line-through;">&#8377;<%= data.item_price %></span>
-                </p>
-            </div>
-            <hr class="ruler">
-            <div class="right-features-container">
-                <div class="feature-icon">
-                    <i style="color: red;" class="fa-solid fa-truck"></i>
-                    <p>Fast Delivery Within 2 days</p>
-                </div>
-                <div class="feature-icon">
-                    <i style="color: red;" class="fa-solid fa-screwdriver-wrench"></i>
-                    <p>All Parts and tools available</p>
-                </div>
-                <div class="feature-icon">
-                    <i style="color: red;" class="fa-solid fa-rotate"></i>
-                    <p>15 Days Replacement</p>
-                </div>
-            </div>
-            <hr class="ruler">
-            <div class="button-container">
-                <button class="cart-btn btnCounter"><a href="/cart/<%= data._id %>" style="text-decoration: none; color:white"> Add to Cart</a></button>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-            <hr class="ruler">
-            <div class="right-description">
-                <h2>About this item</h2>
-                <p>
-                    <%= data.item_des %>
-                </p>
-            </div>
+        <div class="details-price-container">
+            <p style="font-size:larger"><sup>&#8377;</sup>
+                <%= detailItemData.item_price-((detailItemData.item_price * detailItemData.item_discount)/100) %>
+            </p>
+            <p>M.R.P.:&nbsp;<span style="text-decoration: line-through;">&#8377;<%= detailItemData.item_price %>
+                        </span></p>
+            <p style="color: red;">
+                <%= detailItemData.item_discount %>% &nbsp;discount
+            </p>
+            <hr>
+        </div>
+        <div class="details-des">
+            <p><%= detailItemData.item_des %></p>
+            <hr>
+        </div>
+        <div class="details-buttons-container">
+            <button class="btns btnCounter"><a href="/cart/<%= detailItemData._id %>"
+                    style="text-decoration: none; color:white;">Add to Cart</a></button>
         </div>
     </div>
-    <%- include('footer') %>
+   </main>
+   <%- include('footer') %>
 </body>
-
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit-form</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+    <%- include('navbar.ejs') %>
+    <main>
+        <div class="admin-main-container">
+            <form action="/admin/create" method="post">
+            <input type="text" name="item_pic" id="pic" placeholder="Enter Items Image" value="<%= updateForm.item_pic %>">
+            <input type="text" name="item_name" id="name" placeholder="Enter Item Name" value="<%= updateForm.item_name %>">
+            <input type="text" name="item_company" id="company" placeholder="Enter Item Company" value="<%= updateForm.item_company %>">
+            <input type="text" name="item_category" id="category" placeholder="Enter Item Company" value="<%= updateForm.item_category %>">
+            <input type="number" name="item_price" id="price" placeholder="Enter Item Price" value="<%= updateForm.item_price %>">
+            <input type="number" name="item_discount" id="discount" placeholder="Enter Item Discount" value="<%= updateForm.item_discount %>">
+            <input type="text" name="item_rating" id="rating" placeholder="Enter Item InitialRating(Add one ititialy)" value="<%= updateForm.item_rating %>">
+            <textarea name="item_des" id="description" placeholder="Enter Description"><%= updateForm.item_des %>
+            </textarea>
+            <button type="submit" class="admin-button">Update</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
