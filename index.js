@@ -11,8 +11,6 @@ require('dotenv').config();
 const ADMINUSER = process.env.ADMINUSER;
 const ADMINPASS = process.env.ADMINPASS;
 
-console.log(ADMINUSER);
-
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname,"/public/css")));
 app.use(express.static(path.join(__dirname,"/public/js")));
@@ -110,8 +108,6 @@ app.get("/admin",(req,res)=>{
 });
 app.post("/admin/auth",(req,res)=>{
     let{adminUserName, adminPassword} = req.body;
-    console.log(adminUserName, adminPassword);
-    console.log(ADMINPASS,ADMINUSER);
     if(ADMINUSER === adminUserName && ADMINPASS === adminPassword){
         res.render("adminPanelPage.ejs");
     }
